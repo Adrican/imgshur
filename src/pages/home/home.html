@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>imgshur</ion-title>
+    <ion-buttons end>
+      <button (click)="cogerImagen()" ion-button icon-only color="royal">
+        <ion-icon name="image"></ion-icon>
+      </button>
+      <button (click)="hacerFoto()" ion-button icon-only color="royal">
+        <ion-icon name="camera"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="no-scroll">
+
+  <ion-list>
+    <div text-center (click)="copiedToast()" class="ppal">
+          <p>Link</p>
+    </div>
+    <div text-center>
+    <button (click)="subirImagen()" ion-button icon-only color="royal">
+        <ion-icon name="camera"></ion-icon>
+    </button>
+    </div>
+
+  </ion-list>
+</ion-content>
+
+
