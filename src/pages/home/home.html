@@ -16,12 +16,15 @@
 
   <ion-list>
     <div text-center (click)="copiedToast()" class="ppal">
-          <p>Link</p>
+          <label>Click  <ion-icon name="link"></ion-icon> para obtener el link</label>
     </div>
     <div text-center>
-    <button (click)="subirImagen()" ion-button icon-only color="royal">
-        <ion-icon name="camera"></ion-icon>
-    </button>
+      
+
+        <button (click)="subirImagen()" ion-button icon-only clear color="light">
+            <ion-icon (click)="subirImagen()" name="link"></ion-icon>
+        </button>
+
     </div>
 
   </ion-list>
