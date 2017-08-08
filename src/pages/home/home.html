@@ -14,20 +14,15 @@
 
 <ion-content class="no-scroll">
 
-  <ion-list>
-    <div text-center (click)="copiedToast()" class="ppal">
-          <label>Click  <ion-icon name="link"></ion-icon> para obtener el link</label>
-    </div>
-    <div text-center>
-      
+  <div class="loader"></div>
 
-        <button (click)="subirImagen()" ion-button icon-only clear color="light">
-            <ion-icon (click)="subirImagen()" name="link"></ion-icon>
-        </button>
+  <div class="bottom-container">
+      <ion-label (click)="copiedToast()" color="secondary" id="lbl">LINK</ion-label>
+    <button ion-button large outline block (click)="subirImagen()" id="cta" color="primary">Generar Link</button>
+    <button ion-button large outline block (click)="subirImagen()" id="cta" color="primary">Generar para foros</button>
+  </div>
 
-    </div>
 
-  </ion-list>
 </ion-content>
 
 
