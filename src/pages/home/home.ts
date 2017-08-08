@@ -81,6 +81,7 @@ hacerFoto() {
   }
 
   subirImagen() {
+    try {
     let storageRef = firebase.storage().ref();
     // Create a timestamp as filename
     const filename = Math.floor(Date.now() / 1000);
@@ -91,6 +92,21 @@ hacerFoto() {
     imageRef.putString(this.captureDataUrl, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
      // Do something here when the data is succesfully uploaded!
     });
+    }
+
+    catch (e){
+      let toast = this.toastCtrl.create({
+      message: 'Sube una imágen primero para generar el link',
+      duration: 1500,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+    }
 
   }
 

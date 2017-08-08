@@ -1,8 +1,9 @@
 
 .bottom-container {
-    display:block;
-    width:100%;
-    padding: 100% 2em 5em 2em;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .item-md, .item-inner {
