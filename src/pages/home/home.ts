@@ -76,12 +76,11 @@ hacerFoto() {
       encodingType: this.Camera.EncodingType.JPEG,
       mediaType: this.Camera.MediaType.PICTURE,
     };
-
     this.Camera.getPicture(cameraOptions).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
-      this.presentLoading();
+      
     }, (err) => {
       // Handle error
     });
@@ -92,12 +91,12 @@ hacerFoto() {
   const cameraOptions: CameraOptions = {
     sourceType: this.Camera.PictureSourceType.PHOTOLIBRARY,
     destinationType: this.Camera.DestinationType.DATA_URL,      
-    quality: 50,
+    quality: 25,
     encodingType: this.Camera.EncodingType.JPEG,      
     correctOrientation: true
     
   }
-    this.presentLoading();
+    this.prepararImagen();
     this.Camera.getPicture(cameraOptions).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
@@ -108,10 +107,18 @@ hacerFoto() {
     }); 
 }
 
-  presentLoading() {
+  prepararImagen() {
+      let loader = this.loadingCtrl.create({
+        content: "Preparando imágen...",
+        duration: 5000
+      });
+      loader.present();
+    }
+
+  generarLink() {
     let loader = this.loadingCtrl.create({
-      content: "Subiendo imágen...",
-      duration: 3000
+      content: "Generando Link...",
+      duration: 5000
     });
     loader.present();
   }
@@ -120,10 +127,11 @@ hacerFoto() {
 
   subirImagen() {
     try {
+    this.generarLink();
     let storageRef = firebase.storage().ref();
     // Create a timestamp as filename
     const filename = Math.floor(Date.now() / 1000);
-
+    
     // Create a reference to 'images/todays-date.jpg'
     const imageRef = storageRef.child(`images/${filename}.jpg`);
 
