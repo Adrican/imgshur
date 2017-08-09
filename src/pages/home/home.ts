@@ -8,6 +8,7 @@ import { FirebaseApp } from 'angularfire2'; // for methods
 
 import { ToastController } from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { Clipboard } from '@ionic-native/clipboard';
 
 import { LoadingController } from 'ionic-angular';
 
@@ -26,7 +27,9 @@ export class HomePage {
   items: FirebaseListObservable<any[]>;
   captureDataUrl: string;
   image: string = "LINK";
-  constructor(public navCtrl: NavController, private toastCtrl: ToastController, private imagePicker: ImagePicker, db: AngularFireDatabase, private Camera: Camera, private firebase: FirebaseApp, public loadingCtrl: LoadingController) {
+  buttonDisabled = true;
+  buttonDisabledForo = true;
+  constructor(public navCtrl: NavController, private toastCtrl: ToastController, private imagePicker: ImagePicker, db: AngularFireDatabase, private Camera: Camera, private firebase: FirebaseApp, public loadingCtrl: LoadingController, private clipboard: Clipboard) {
     
     this.items = db.list('/items');
 
@@ -35,6 +38,7 @@ export class HomePage {
   }
 
   copiedToast() {
+    this.clipboard.copy(this.image)
     let toast = this.toastCtrl.create({
       message: 'Link copiado',
       duration: 1500,
@@ -87,6 +91,7 @@ hacerFoto() {
   }
 
 
+
   cogerImagen() {
   const cameraOptions: CameraOptions = {
     sourceType: this.Camera.PictureSourceType.PHOTOLIBRARY,
@@ -96,12 +101,14 @@ hacerFoto() {
     correctOrientation: true
     
   }
-    this.prepararImagen();
+    
     this.Camera.getPicture(cameraOptions).then((imageData) => {
+      this.prepararImagen();
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
       
+      this.buttonDisabled = null;
     }, (err) => {
       // Handle error
     }); 
@@ -144,7 +151,7 @@ hacerFoto() {
 
     
      // Do something here when the data is succesfully uploaded!
-
+    this.buttonDisabledForo = null;
 
 
     });
@@ -163,6 +170,15 @@ hacerFoto() {
 
     toast.present();
     }
+
+  }
+
+  subirImagenForos() {
+
+    this.image = "[IMG]"+ this.image +"[/IMG]"
+    
+     // Do something here when the data is succesfully uploaded!
+
 
   }
 

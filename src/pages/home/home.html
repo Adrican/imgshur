@@ -20,8 +20,8 @@
     <div class="link">
       <ion-label (click)="copiedToast()" color="secondary" id="lbl">{{image}}</ion-label>
     </div>
-    <button ion-button large outline block (click)="subirImagen()" id="cta" color="primary">Generar Link</button>
-    <button ion-button large outline block (click)="subirImagen()" id="cta" color="primary">Generar para foros</button>
+    <button disabled={{buttonDisabled}} ion-button large outline block (click)="subirImagen()" id="cta" color="primary">Generar Link</button>
+    <button disabled={{buttonDisabledForo}} ion-button large outline block (click)="subirImagenForos()" id="cta" color="primary">Generar para foros</button>
   </div>
 
 

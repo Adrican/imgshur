@@ -9,7 +9,7 @@ import { Camera } from '@ionic-native/camera';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
-
+import { Clipboard } from '@ionic-native/clipboard';
 
 
 import { AngularFireModule } from 'angularfire2';
@@ -49,7 +49,8 @@ var firebaseConfig = {
     ImagePicker,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Clipboard
   ]
 })
 export class AppModule {}
