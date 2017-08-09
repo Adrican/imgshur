@@ -14,7 +14,9 @@
 
 <ion-content class="no-scroll">
 
-  <div class="loader"></div>
+  <div class="loading-icon" (tap)="tapEvent($event)" >
+    <img src="./assets/roto2.png" *ngIf="tap==20">
+  </div>
 
   <div class="bottom-container">
     <div class="link">

@@ -29,6 +29,8 @@ export class HomePage {
   image: string = "LINK";
   buttonDisabled = true;
   buttonDisabledForo = true;
+  public tap: number = 0;
+
   constructor(public navCtrl: NavController, private toastCtrl: ToastController, private imagePicker: ImagePicker, db: AngularFireDatabase, private Camera: Camera, private firebase: FirebaseApp, public loadingCtrl: LoadingController, private clipboard: Clipboard) {
     
     this.items = db.list('/items');
@@ -151,6 +153,7 @@ hacerFoto() {
 
     
      // Do something here when the data is succesfully uploaded!
+
     this.buttonDisabledForo = null;
 
 
@@ -182,6 +185,12 @@ hacerFoto() {
 
   }
 
-}
+  tapEvent(e) {
+    this.tap++
 
+  }
+
+
+
+}
 
