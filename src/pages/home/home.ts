@@ -9,6 +9,7 @@ import { FirebaseApp } from 'angularfire2'; // for methods
 import { ToastController } from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker';
 
+import { LoadingController } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
@@ -25,7 +26,7 @@ export class HomePage {
   items: FirebaseListObservable<any[]>;
   captureDataUrl: string;
   image: string = "LINK";
-  constructor(public navCtrl: NavController, private toastCtrl: ToastController, private imagePicker: ImagePicker, db: AngularFireDatabase, private Camera: Camera, private firebase: FirebaseApp) {
+  constructor(public navCtrl: NavController, private toastCtrl: ToastController, private imagePicker: ImagePicker, db: AngularFireDatabase, private Camera: Camera, private firebase: FirebaseApp, public loadingCtrl: LoadingController) {
     
     this.items = db.list('/items');
 
@@ -80,6 +81,7 @@ hacerFoto() {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+      this.presentLoading();
     }, (err) => {
       // Handle error
     });
@@ -93,17 +95,26 @@ hacerFoto() {
     quality: 50,
     encodingType: this.Camera.EncodingType.JPEG,      
     correctOrientation: true
+    
   }
-
+    this.presentLoading();
     this.Camera.getPicture(cameraOptions).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+      
     }, (err) => {
       // Handle error
     }); 
 }
 
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Subiendo imágen...",
+      duration: 3000
+    });
+    loader.present();
+  }
 
 
 
@@ -123,18 +134,9 @@ hacerFoto() {
     storageRef = firebase.storage().ref().child(`images/${filename}.jpg`);
     storageRef.getDownloadURL().then(url => this.image = url);
 
+    
      // Do something here when the data is succesfully uploaded!
-     let toast = this.toastCtrl.create({
-      message: this.image,
-      duration: 1500,
-      position: 'bottom'
-    });
 
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-
-    toast.present();
 
 
     });
