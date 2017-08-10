@@ -26,13 +26,23 @@
 
       <img [src]="slide.image" class="slide-image"/>
 
-      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <h4 class="slide-title" [innerHTML]="slide.title"></h4>
       <p [innerHTML]="slide.description"></p>
     </ion-slide>
     <ion-slide>
       <ion-toolbar>
       </ion-toolbar>
-      <img src="assets/final.png" class="slide-image"/>
+      <div>
+        <div id="bm-ribbon">
+          <div class="inset"></div>
+          <div class="container">
+              <div class="base"></div>
+              <div class="left_corner"></div>
+              <div class="right_corner"></div>
+          </div>
+        </div>
+        <input class="fox" type="image" src="./assets/fox.png" /> 
+      </div>
       <h2 class="slide-title">¡Es hora de empezar a usar imgshur!</h2>
       <button ion-button large clear icon-end color="light">
         EMPEZAR
