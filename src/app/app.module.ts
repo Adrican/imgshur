@@ -8,6 +8,7 @@ import { Camera } from '@ionic-native/camera';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { Clipboard } from '@ionic-native/clipboard';
 
@@ -29,7 +30,8 @@ var firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    TutorialPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ var firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    TutorialPage
   ],
   providers: [
     StatusBar,
