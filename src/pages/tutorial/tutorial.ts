@@ -58,7 +58,9 @@ export class TutorialPage {
     this.slides.slideTo(4, 500);
   }
 
+  //Al contrario de this.navCtrl.push(HomePage); 'setRoot();' lo que hace es cambiar la página que se abrirá de inicio en el dispositivo
+
   goToHome() {
-    this.navCtrl.push(HomePage);
+    this.navCtrl.setRoot(HomePage);
   }
 }
