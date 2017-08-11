@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { Slides } from 'ionic-angular';
+import { ViewChild } from '@angular/core';
+import { HomePage } from '../home/home';
+
 /**
  * Generated class for the TutorialPage page.
  *
@@ -14,7 +18,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'tutorial.html',
 })
 export class TutorialPage {
-    slides = [
+  
+  @ViewChild(Slides) slides: Slides;
+    slidesList = [
     {
       title: "¡Bienvenido a imgshur!",
       description: "Para comenzar deberás elegir la imágen de tu galería o hacer una foto directamente.",
@@ -37,6 +43,7 @@ export class TutorialPage {
     }
   ];
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     
   }
@@ -46,4 +53,12 @@ export class TutorialPage {
     console.log('ionViewDidLoad TutorialPage');
   }
 
+
+  goToSlide() {
+    this.slides.slideTo(4, 500);
+  }
+
+  goToHome() {
+    this.navCtrl.push(HomePage);
+  }
 }

@@ -17,10 +17,10 @@
 
 <ion-content class="no-scroll">
 <ion-slides pager>
-    <ion-slide *ngFor="let slide of slides">
+    <ion-slide *ngFor="let slide of slidesList">
       <ion-toolbar>
         <ion-buttons end>
-          <button ion-button color="light">Skip</button>
+          <button (click)="goToSlide()" ion-button color="light">Skip</button>
         </ion-buttons>
       </ion-toolbar>
 
@@ -44,7 +44,7 @@
         <input class="fox" type="image" src="./assets/fox.png" /> 
       </div>
       <h2 class="slide-title">¡Es hora de empezar a usar imgshur!</h2>
-      <button ion-button large clear icon-end color="light">
+      <button (click)="goToHome()" ion-button large clear icon-end color="light">
         EMPEZAR
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
