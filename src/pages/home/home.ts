@@ -77,7 +77,7 @@ export class HomePage {
 
 hacerFoto() {
     const cameraOptions: CameraOptions = {
-      quality: 50,
+      quality: 25,
       destinationType: this.Camera.DestinationType.DATA_URL,
       encodingType: this.Camera.EncodingType.JPEG,
       mediaType: this.Camera.MediaType.PICTURE,

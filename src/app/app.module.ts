@@ -18,6 +18,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { ImagePicker } from '@ionic-native/image-picker';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 var firebaseConfig = {
     apiKey: "AIzaSyB-dS_BwzFNGTgZ1HDmlokGgis4i6GUlnE",
     authDomain: "imgshur.firebaseapp.com",
@@ -36,6 +38,7 @@ var firebaseConfig = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule
