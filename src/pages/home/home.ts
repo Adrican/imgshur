@@ -127,7 +127,7 @@ hacerFoto() {
   generarLink() {
     let loader = this.loadingCtrl.create({
       content: "Generando Link...",
-      duration: 5000
+      duration: 3000
     });
     loader.present();
   }

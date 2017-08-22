@@ -14,8 +14,12 @@
 
 <ion-content class="no-scroll">
 
+  <div class="fotoSubida">
+    <img class="marcoFoto" [src]="captureDataUrl" *ngIf="captureDataUrl"/>
+  </div>
   <div class="loading-icon" (tap)="tapEvent($event)" >
     <img src="./assets/roto2.png" *ngIf="tap==20">
+    
   </div>
 
   <div class="bottom-container">
