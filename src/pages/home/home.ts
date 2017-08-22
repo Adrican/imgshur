@@ -96,10 +96,10 @@ hacerFoto() {
 
   cogerImagen() {
   const cameraOptions: CameraOptions = {
-    sourceType: this.Camera.PictureSourceType.PHOTOLIBRARY,
-    destinationType: this.Camera.DestinationType.DATA_URL,      
     quality: 25,
-    encodingType: this.Camera.EncodingType.JPEG,      
+    destinationType: this.Camera.DestinationType.DATA_URL, 
+    encodingType: this.Camera.EncodingType.JPEG,  
+    sourceType: this.Camera.PictureSourceType.PHOTOLIBRARY,
     correctOrientation: true
     
   }
