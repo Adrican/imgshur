@@ -5,6 +5,8 @@ import { Slides } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { HomePage } from '../home/home';
 
+import { AlertController } from 'ionic-angular';
+
 /**
  * Generated class for the TutorialPage page.
  *
@@ -20,6 +22,7 @@ import { HomePage } from '../home/home';
 export class TutorialPage {
   
   @ViewChild(Slides) slides: Slides;
+  public tap: number = 1;
     slidesList = [
     {
       title: "¡Bienvenido a imgshur!",
@@ -44,7 +47,7 @@ export class TutorialPage {
   ];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
     
   }
 
@@ -63,4 +66,19 @@ export class TutorialPage {
   goToHome() {
     this.navCtrl.setRoot(HomePage);
   }
+
+  easterEggVero() {
+    if (this.tap==5) {
+      let alert = this.alertCtrl.create({
+        title: '05/01/2017',
+        subTitle: '🐱 & 🦊',
+        buttons: ['️❤️']
+      });
+      alert.present();
+    }
+    else{
+      this.tap++;
+    }
+  }
+
 }

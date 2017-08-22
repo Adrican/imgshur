@@ -14,7 +14,7 @@ import { LoadingController } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
-
+import { TutorialPage } from '../tutorial/tutorial';
 
 
 @Component({
@@ -190,6 +190,10 @@ hacerFoto() {
 
   }
 
+
+  verTutorial(){
+    this.navCtrl.push(TutorialPage);
+  }
 
 
 }
