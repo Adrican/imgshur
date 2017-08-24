@@ -26,9 +26,11 @@ export class HomePage {
 
   items: FirebaseListObservable<any[]>;
   captureDataUrl: string;
+  aux: number = 0;
   image: string = "LINK";
   buttonDisabled = true;
   buttonDisabledForo = true;
+  spinnerCargaHide = true;
   public tap: number = 0;
 
   constructor(public navCtrl: NavController, private toastCtrl: ToastController, private imagePicker: ImagePicker, db: AngularFireDatabase, private Camera: Camera, private firebase: FirebaseApp, public loadingCtrl: LoadingController, private clipboard: Clipboard) {
@@ -87,6 +89,7 @@ hacerFoto() {
       // If it's base64:
       this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
       
+      this.buttonDisabled = null;
     }, (err) => {
       // Handle error
     });
@@ -95,6 +98,7 @@ hacerFoto() {
 
 
   cogerImagen() {
+  
   const cameraOptions: CameraOptions = {
     quality: 25,
     destinationType: this.Camera.DestinationType.DATA_URL, 
@@ -103,14 +107,22 @@ hacerFoto() {
     correctOrientation: true
     
   }
-    
+  this.spinnerCargaHide = false;
+
     this.Camera.getPicture(cameraOptions).then((imageData) => {
-      this.prepararImagen();
+      
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
+      
+      
+      
+
       this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+      this.aux = 1;
       
       this.buttonDisabled = null;
+      this.spinnerCargaHide = true;
+      this.aux = 0;
     }, (err) => {
       // Handle error
     }); 

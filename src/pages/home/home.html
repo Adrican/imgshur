@@ -15,6 +15,9 @@
 <ion-content class="no-scroll">
 
   <div class="fotoSubida">
+    <div class="spinner">
+      <ion-spinner name="crescent" *ngIf="aux==0 && spinnerCargaHide==false"></ion-spinner>
+    </div>
     <img class="marcoFoto" [src]="captureDataUrl" *ngIf="captureDataUrl"/>
   </div>
   <div class="loading-icon" (tap)="tapEvent($event)" >
