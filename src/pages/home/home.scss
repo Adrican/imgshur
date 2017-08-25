@@ -63,9 +63,9 @@
     text-align:center;
 }
 
-.spinner{
-  z-index: 9999; 
-  position: fixed;
+.fotoSubida .spinner{
+  z-index: 9999 !important; 
+  position: fixed !important;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -75,7 +75,7 @@ ion-spinner * {
   width: 50px;
   height: 50px;
   stroke: #0AFDA4 !important;
-  z-index: 99999;
+
   
 }
 

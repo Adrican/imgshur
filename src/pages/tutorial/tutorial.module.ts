@@ -5,7 +5,7 @@ import { TutorialPage } from './tutorial';
 
 @NgModule({
   declarations: [
-    TutorialPage,
+
   ],
   imports: [
     IonicPageModule.forChild(TutorialPage),
