@@ -13,6 +13,7 @@ import { Clipboard } from '@ionic-native/clipboard';
 import { LoadingController } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
 import { TutorialPage } from '../tutorial/tutorial';
 
@@ -38,8 +39,11 @@ export class HomePage {
     this.items = db.list('/items');
 
 
+
   
   }
+
+
 
   copiedToast() {
     this.clipboard.copy(this.image)

@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { Clipboard } from '@ionic-native/clipboard';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
 
 import { AngularFireModule } from 'angularfire2';
@@ -56,7 +57,8 @@ var firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Clipboard
+    Clipboard,
+    AdMobFree
   ]
 })
 export class AppModule {}
