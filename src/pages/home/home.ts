@@ -123,32 +123,22 @@ hacerFoto() {
       this.buttonDisabled = null;
       this.spinnerCargaHide = true;
       this.aux = 0;
+      this.image = "LINK"
     }, (err) => {
       // Handle error
     }); 
 }
 
-  prepararImagen() {
-      let loader = this.loadingCtrl.create({
-        content: "Preparando imágen...",
-        duration: 5000
-      });
-      loader.present();
-    }
-
-  generarLink() {
-    let loader = this.loadingCtrl.create({
-      content: "Generando Link...",
-      duration: 3000
-    });
-    loader.present();
-  }
 
 
 
   subirImagen() {
     try {
-    this.generarLink();
+    let loader = this.loadingCtrl.create({
+        content: "Generando Link...",
+      });
+    loader.present();
+
     let storageRef = firebase.storage().ref();
     // Create a timestamp as filename
     const filename = Math.floor(Date.now() / 1000);
@@ -166,7 +156,9 @@ hacerFoto() {
     
      // Do something here when the data is succesfully uploaded!
 
+    loader.dismiss();
     this.buttonDisabledForo = null;
+    
 
 
     });
@@ -193,6 +185,7 @@ hacerFoto() {
     this.image = "[IMG]"+ this.image +"[/IMG]"
     
      // Do something here when the data is succesfully uploaded!
+     this.buttonDisabledForo = true;
 
 
   }

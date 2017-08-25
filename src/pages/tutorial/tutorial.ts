@@ -27,22 +27,22 @@ export class TutorialPage {
     {
       title: "¡Bienvenido a imgshur!",
       description: "Para comenzar deberás elegir la imágen de tu galería o hacer una foto directamente.",
-      image: "assets/diapogood1.png",
+      image: "assets/diapo1.png",
     },
     {
       title: "Generar el link",
       description: "Una vez hayas elegido la imágen, podrás generar el link pulsando en el botón correspondiente.",
-      image: "assets/diapogood2.png",
+      image: "assets/diapo2.png",
     },
     {
       title: "Añadir etiquetas para foros",
       description: "Ahora, si quieres puedes añadir las etiquetas '[IMG][/IMG]' usada en los foros directamente pulsando en el botón correspondiente.",
-      image: "assets/diapogood3.png",
+      image: "assets/diapo3.png",
     },
     {
       title: "Copiar el link",
       description: "Pulsando en el link generado, se copiará directamente al portapapeles para que solo tengas que pegarlo en tu post.",
-      image: "assets/diapogood4.png",
+      image: "assets/diapo4.png",
     }
   ];
 
