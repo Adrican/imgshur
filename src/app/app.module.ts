@@ -22,12 +22,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { IonicStorageModule } from '@ionic/storage';
 
 var firebaseConfig = {
-    apiKey: "AIzaSyB-dS_BwzFNGTgZ1HDmlokGgis4i6GUlnE",
-    authDomain: "imgshur.firebaseapp.com",
-    databaseURL: "https://imgshur.firebaseio.com",
-    projectId: "imgshur",
-    storageBucket: "imgshur.appspot.com",
-    messagingSenderId: "449261701468"
+
   };
 
 @NgModule({

@@ -26,12 +26,12 @@ export class TutorialPage {
     slidesList = [
     {
       title: "¡Bienvenido a imgshur!",
-      description: "Para comenzar deberás elegir la imágen de tu galería o hacer una foto directamente.",
+      description: "Para comenzar deberás elegir la imagen de tu galería o hacer una foto directamente.",
       image: "assets/diapo1.png",
     },
     {
       title: "Generar el link",
-      description: "Una vez hayas elegido la imágen, podrás generar el link pulsando en el botón correspondiente.",
+      description: "Una vez hayas elegido la imagen, podrás generar el link pulsando en el botón correspondiente.",
       image: "assets/diapo2.png",
     },
     {

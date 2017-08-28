@@ -34,6 +34,7 @@ export class MyApp {
                
         
              });
+             /*
       
              const bannerConfig: AdMobFreeBannerConfig = {
               id: 'ca-app-pub-2595598708720153/4569127917',
@@ -49,6 +50,7 @@ export class MyApp {
                // if we set autoShow to false, then we will need to call the show method here
              })
              .catch(e => console.log(e));
+             */
     });
 
   }

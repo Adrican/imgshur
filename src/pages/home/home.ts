@@ -6,6 +6,8 @@ import 'firebase/storage';
 import * as firebase from 'firebase/app'; // for typings
 import { FirebaseApp } from 'angularfire2'; // for methods
 
+import { Client } from '@rmp135/imgur'
+
 import { ToastController } from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Clipboard } from '@ionic-native/clipboard';
@@ -18,15 +20,24 @@ import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 import { TutorialPage } from '../tutorial/tutorial';
 
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 
+
+
 export class HomePage {
+
+
+  client = new Client({
+
+  })
 
   items: FirebaseListObservable<any[]>;
   captureDataUrl: string;
+  imageUpload: string;
   aux: number = 0;
   image: string = "LINK";
   buttonDisabled = true;
@@ -37,7 +48,6 @@ export class HomePage {
   constructor(public navCtrl: NavController, private toastCtrl: ToastController, private imagePicker: ImagePicker, db: AngularFireDatabase, private Camera: Camera, private firebase: FirebaseApp, public loadingCtrl: LoadingController, private clipboard: Clipboard) {
     
     this.items = db.list('/items');
-
 
 
   
@@ -72,7 +82,7 @@ export class HomePage {
         destinationType: this.imagePicker.getPictures
       };
       this.imagePicker.getPictures(options).then((results) => {
-      for (var i = 0; i < results.length; i++) {
+      for (var i = 0; i < results.length; i++) {-
           this.captureDataUrl = 'data:image/jpeg;base64,' + results[i];
       }
     }, (err) => { });
@@ -82,16 +92,19 @@ export class HomePage {
 
 
 hacerFoto() {
+  this.spinnerCargaHide = true;
     const cameraOptions: CameraOptions = {
-      quality: 25,
+      quality: 50,
       destinationType: this.Camera.DestinationType.DATA_URL,
       encodingType: this.Camera.EncodingType.JPEG,
       mediaType: this.Camera.MediaType.PICTURE,
+      saveToPhotoAlbum: true
     };
     this.Camera.getPicture(cameraOptions).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+      this.imageUpload = imageData;
       
       this.buttonDisabled = null;
     }, (err) => {
@@ -104,11 +117,11 @@ hacerFoto() {
   cogerImagen() {
   
   const cameraOptions: CameraOptions = {
-    quality: 25,
+    quality: 50,
     destinationType: this.Camera.DestinationType.DATA_URL, 
-    encodingType: this.Camera.EncodingType.JPEG,  
     sourceType: this.Camera.PictureSourceType.PHOTOLIBRARY,
-    correctOrientation: true
+    correctOrientation: true,
+    allowEdit: true
     
   }
   this.spinnerCargaHide = false;
@@ -122,6 +135,7 @@ hacerFoto() {
       
 
       this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+      this.imageUpload = imageData;
       this.aux = 1;
       
       this.buttonDisabled = null;
@@ -136,12 +150,19 @@ hacerFoto() {
 
 
 
-  subirImagen() {
+  async subirImagen() {
     try {
     let loader = this.loadingCtrl.create({
         content: "Generando Link...",
       });
     loader.present();
+
+    await this.client.Image.upload(this.imageUpload, { type: 'base64' }).then((response) =>{
+      this.image = response.data.link;
+
+    });
+
+    /* 
 
     let storageRef = firebase.storage().ref();
     // Create a timestamp as filename
@@ -160,12 +181,19 @@ hacerFoto() {
     
      // Do something here when the data is succesfully uploaded!
 
+});
+     */
+
+
+
+
+
     loader.dismiss();
     this.buttonDisabledForo = null;
     
 
 
-    });
+    
     }
 
     catch (e){
@@ -187,9 +215,13 @@ hacerFoto() {
   subirImagenForos() {
 
     this.image = "[IMG]"+ this.image +"[/IMG]"
+    this.clipboard.copy(this.image)
+    
     
      // Do something here when the data is succesfully uploaded!
      this.buttonDisabledForo = true;
+     this.copiedToast();
+     
 
 
   }

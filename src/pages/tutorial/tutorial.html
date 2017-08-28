@@ -23,9 +23,9 @@
           <button (click)="goToSlide()" ion-button color="light">Skip</button>
         </ion-buttons>
       </ion-toolbar>
-
-      <img [src]="slide.image" class="slide-image"/>
-
+      <div class="imagenes">
+        <img [src]="slide.image" class="slide-image"/>
+      </div>
       <h4 class="slide-title" [innerHTML]="slide.title"></h4>
       <p [innerHTML]="slide.description"></p>
     </ion-slide>
