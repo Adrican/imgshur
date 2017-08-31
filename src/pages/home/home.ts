@@ -38,7 +38,7 @@ export class HomePage {
   client = new Client({
 
 
-  })
+  });
 
 
   items: FirebaseListObservable<any[]>;
@@ -47,6 +47,8 @@ export class HomePage {
   imageUploadGood: string;
   aux: number = 0;
   image: string = "LINK";
+  linkMalo = true;
+  linkDisponible = false;
   buttonDisabled = true;
   buttonDisabledForo = true;
   spinnerCargaHide = true;
@@ -128,6 +130,7 @@ hacerFoto() {
     destinationType: this.Camera.DestinationType.FILE_URI, 
     sourceType: this.Camera.PictureSourceType.PHOTOLIBRARY,
     correctOrientation: true,
+    allowEdit: true,
     mediaType: this.Camera.MediaType.ALLMEDIA
     
   }
@@ -151,9 +154,11 @@ hacerFoto() {
 
 
       this.buttonDisabled = null;
+      this.buttonDisabledForo = true;
       this.spinnerCargaHide = true;
       this.aux = 0;
-      this.image = "LINK"
+      this.linkMalo = true;
+      this.linkDisponible = false;
     }, (err) => {
       // Handle error
     }); 
@@ -174,9 +179,10 @@ hacerFoto() {
     
     
     this.imageUploadGood = this.imageUpload.replace('data:image/*;charset=utf-8;base64,', '')
-    await this.client.Image.upload(this.imageUploadGood, { type: 'base64', album: 'JmtEV' }).then((response) =>{
+    await this.client.Image.upload(this.imageUploadGood, { type: 'base64'}).then((response) =>{
       this.image = response.data.link;
-
+      this.linkMalo = false;
+      this.linkDisponible = true;
     });
 
     /* 
@@ -243,13 +249,7 @@ hacerFoto() {
     }, (err) => {
       alert(err);
     });
-    
-    
-
-
-      
-    
-
+  
 
     
     
