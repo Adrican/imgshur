@@ -82,6 +82,7 @@
     <allow-navigation href="http://192.168.1.36:8100" />
     <engine name="android" spec="^6.2.3" />
     <engine name="browser" spec="^4.1.0" />
+    <plugin name="com-badrit-base64" spec="^0.2.0" />
     <plugin name="com.synconset.imagepicker" spec="~2.1.8">
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="imgshur" />
     </plugin>
@@ -90,6 +91,7 @@
     <plugin name="cordova-plugin-camera" spec="^2.4.1" />
     <plugin name="cordova-plugin-console" spec="^1.0.5" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
+    <plugin name="cordova-plugin-file" spec="^4.3.3" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.2.2" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />

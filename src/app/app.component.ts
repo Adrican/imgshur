@@ -34,23 +34,7 @@ export class MyApp {
                
         
              });
-             /*
-      
-             const bannerConfig: AdMobFreeBannerConfig = {
-              id: 'ca-app-pub-2595598708720153/4569127917',
-              // for the sake of this example we will just use the test config
-              isTesting: false,
-              autoShow: true
-             };
-             this.admobFree.banner.config(bannerConfig);
-        
-             this.admobFree.banner.prepare()
-             .then(() => {
-               // banner Ad is ready
-               // if we set autoShow to false, then we will need to call the show method here
-             })
-             .catch(e => console.log(e));
-             */
+
     });
 
   }

@@ -10,6 +10,7 @@ import { Client } from '@rmp135/imgur'
 
 import { ToastController } from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { readFileSync } from 'fs';
 import { Clipboard } from '@ionic-native/clipboard';
 
 import { LoadingController } from 'ionic-angular';
@@ -18,6 +19,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
 import { TutorialPage } from '../tutorial/tutorial';
+
+import { Base64 } from '@ionic-native/base64';
+
 
 
 
@@ -33,11 +37,14 @@ export class HomePage {
 
   client = new Client({
 
+
   })
+
 
   items: FirebaseListObservable<any[]>;
   captureDataUrl: string;
   imageUpload: string;
+  imageUploadGood: string;
   aux: number = 0;
   image: string = "LINK";
   buttonDisabled = true;
@@ -45,7 +52,7 @@ export class HomePage {
   spinnerCargaHide = true;
   public tap: number = 0;
 
-  constructor(public navCtrl: NavController, private toastCtrl: ToastController, private imagePicker: ImagePicker, db: AngularFireDatabase, private Camera: Camera, private firebase: FirebaseApp, public loadingCtrl: LoadingController, private clipboard: Clipboard) {
+  constructor(public navCtrl: NavController, private toastCtrl: ToastController, private imagePicker: ImagePicker, db: AngularFireDatabase, private Camera: Camera, private firebase: FirebaseApp, public loadingCtrl: LoadingController, private clipboard: Clipboard, private base64: Base64) {
     
     this.items = db.list('/items');
 
@@ -118,10 +125,10 @@ hacerFoto() {
   
   const cameraOptions: CameraOptions = {
     quality: 50,
-    destinationType: this.Camera.DestinationType.DATA_URL, 
+    destinationType: this.Camera.DestinationType.FILE_URI, 
     sourceType: this.Camera.PictureSourceType.PHOTOLIBRARY,
     correctOrientation: true,
-    allowEdit: true
+    mediaType: this.Camera.MediaType.ALLMEDIA
     
   }
   this.spinnerCargaHide = false;
@@ -133,11 +140,16 @@ hacerFoto() {
       
       
       
-
-      this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
-      this.imageUpload = imageData;
-      this.aux = 1;
       
+
+      this.captureDataUrl = 'file://' + imageData;
+      this.aux = 1;
+
+
+  
+      this.transformBase64();
+
+
       this.buttonDisabled = null;
       this.spinnerCargaHide = true;
       this.aux = 0;
@@ -151,13 +163,18 @@ hacerFoto() {
 
 
   async subirImagen() {
-    try {
     let loader = this.loadingCtrl.create({
-        content: "Generando Link...",
-      });
+      content: "Generando Link...",
+    });
+    try {
+      
+    
     loader.present();
 
-    await this.client.Image.upload(this.imageUpload, { type: 'base64' }).then((response) =>{
+    
+    
+    this.imageUploadGood = this.imageUpload.replace('data:image/*;charset=utf-8;base64,', '')
+    await this.client.Image.upload(this.imageUploadGood, { type: 'base64', album: 'JmtEV' }).then((response) =>{
       this.image = response.data.link;
 
     });
@@ -198,8 +215,8 @@ hacerFoto() {
 
     catch (e){
       let toast = this.toastCtrl.create({
-      message: 'Para generar un link debes elegir una imágen',
-      duration: 1500,
+      message: 'Solo puedes subir archivos de imagen válidos (.gif, .png, etc...)',
+      duration: 3000,
       position: 'bottom'
     });
 
@@ -208,8 +225,34 @@ hacerFoto() {
     });
 
     toast.present();
+    loader.dismiss();
+
+    this.buttonDisabled = true;
+    this.buttonDisabledForo = true;
+
     }
 
+
+  }
+
+  
+  transformBase64(){
+  
+    this.base64.encodeFile(this.captureDataUrl).then((base64File: string) => {
+       this.imageUpload = base64File;
+    }, (err) => {
+      alert(err);
+    });
+    
+    
+
+
+      
+    
+
+
+    
+    
   }
 
   subirImagenForos() {
