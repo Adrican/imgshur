@@ -18,6 +18,7 @@ import { LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
+import { ActionSheetController } from 'ionic-angular';
 import { TutorialPage } from '../tutorial/tutorial';
 
 import { Base64 } from '@ionic-native/base64';
@@ -54,7 +55,7 @@ export class HomePage {
   spinnerCargaHide = true;
   public tap: number = 0;
 
-  constructor(public navCtrl: NavController, private toastCtrl: ToastController, private imagePicker: ImagePicker, db: AngularFireDatabase, private Camera: Camera, private firebase: FirebaseApp, public loadingCtrl: LoadingController, private clipboard: Clipboard, private base64: Base64) {
+  constructor(public navCtrl: NavController, private toastCtrl: ToastController, private imagePicker: ImagePicker, db: AngularFireDatabase, private Camera: Camera, private firebase: FirebaseApp, public loadingCtrl: LoadingController, private clipboard: Clipboard, private base64: Base64, public actionSheetCtrl: ActionSheetController) {
     
     this.items = db.list('/items');
 
@@ -130,7 +131,6 @@ hacerFoto() {
     destinationType: this.Camera.DestinationType.FILE_URI, 
     sourceType: this.Camera.PictureSourceType.PHOTOLIBRARY,
     correctOrientation: true,
-    allowEdit: true,
     mediaType: this.Camera.MediaType.ALLMEDIA
     
   }
@@ -279,6 +279,8 @@ hacerFoto() {
     this.navCtrl.push(TutorialPage);
   }
 
+
+  
 
 }
 
