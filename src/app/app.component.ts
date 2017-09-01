@@ -36,9 +36,8 @@ export class MyApp {
              });
              
       
-             
-             
     });
+    
 
   }
 }

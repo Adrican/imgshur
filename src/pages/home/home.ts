@@ -53,6 +53,9 @@ export class HomePage {
   buttonDisabled = true;
   buttonDisabledForo = true;
   spinnerCargaHide = true;
+  txtBbcodeLink = "BBCode Linked";
+  txtHtml = "HTML5";
+  txtMarkdown = "Markdown";
   public tap: number = 0;
 
   constructor(public navCtrl: NavController, private toastCtrl: ToastController, private imagePicker: ImagePicker, db: AngularFireDatabase, private Camera: Camera, private firebase: FirebaseApp, public loadingCtrl: LoadingController, private clipboard: Clipboard, private base64: Base64, public actionSheetCtrl: ActionSheetController) {
@@ -108,7 +111,8 @@ hacerFoto() {
       destinationType: this.Camera.DestinationType.DATA_URL,
       encodingType: this.Camera.EncodingType.JPEG,
       mediaType: this.Camera.MediaType.PICTURE,
-      saveToPhotoAlbum: true
+      saveToPhotoAlbum: true,
+      correctOrientation: true
     };
     this.Camera.getPicture(cameraOptions).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
@@ -269,6 +273,50 @@ hacerFoto() {
 
   }
 
+  generarMarkdown() {
+    
+        this.txtMarkdown = "[Imgur]("+ this.image +")"
+        this.clipboard.copy(this.txtMarkdown)
+        
+        
+         // Do something here when the data is succesfully uploaded!
+         
+         this.copiedToast();
+         
+    
+    
+  }
+
+  generarHtml() {
+        
+            this.txtHtml = "<a href=\""+ this.image +"\"><img src=\"" +this.image + "\" title=\"source: imgur.com\" /></a>"
+            this.clipboard.copy(this.txtHtml)
+            
+            
+             // Do something here when the data is succesfully uploaded!
+             
+             this.copiedToast();
+             
+        
+        
+  }
+
+  generarBbcode() {
+    
+        this.txtBbcodeLink = "[url="+ this.image +"]" +"[img]" + this.image + "[/img][/url]"
+        this.clipboard.copy(this.txtBbcodeLink)
+        
+        
+         // Do something here when the data is succesfully uploaded!
+         
+         this.copiedToast();
+         
+    
+    
+}
+
+
+
   tapEvent(e) {
     this.tap++
 
@@ -279,7 +327,44 @@ hacerFoto() {
     this.navCtrl.push(TutorialPage);
   }
 
-
+  abrirMenuLinks() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Generar como:',
+      cssClass: 'action-sheets-basic-page',
+      buttons: [
+        {
+          text: this.txtMarkdown,
+          icon: 'logo-markdown',
+          handler: () => {
+            this.generarMarkdown();
+          }
+        },
+        {
+          text: this.txtHtml,
+          icon: 'logo-html5',
+          handler: () => {
+            this.generarHtml();
+          }
+        },
+        {
+          text: this.txtBbcodeLink,
+          icon: 'code',
+          handler: () => {
+            this.generarBbcode();
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel', // will always sort to be on the bottom
+          icon: 'close',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
   
 
 }
