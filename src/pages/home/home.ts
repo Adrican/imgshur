@@ -121,6 +121,9 @@ hacerFoto() {
       this.imageUpload = imageData;
       
       this.buttonDisabled = null;
+      this.linkMalo = true;
+      this.linkDisponible = false;
+      this.buttonDisabledForo = true;
     }, (err) => {
       // Handle error
     });
@@ -187,6 +190,9 @@ hacerFoto() {
       this.image = response.data.link;
       this.linkMalo = false;
       this.linkDisponible = true;
+      this.txtMarkdown = "[Imgur]("+ this.image +")";
+      this.txtHtml = "<a href=\""+ this.image +"\"><img src=\"" +this.image + "\" title=\"source: imgur.com\" /></a>";
+      this.txtBbcodeLink = "[url="+ this.image +"]" +"[img]" + this.image + "[/img][/url]"
     });
 
     /* 
@@ -217,7 +223,6 @@ hacerFoto() {
 
     loader.dismiss();
     this.buttonDisabledForo = null;
-    
 
 
     
@@ -261,8 +266,8 @@ hacerFoto() {
 
   subirImagenForos() {
 
-    this.image = "[IMG]"+ this.image +"[/IMG]"
-    this.clipboard.copy(this.image)
+    this.image = "[IMG]"+ this.image +"[/IMG]";
+    this.clipboard.copy(this.image);
     
     
      // Do something here when the data is succesfully uploaded!
@@ -275,8 +280,8 @@ hacerFoto() {
 
   generarMarkdown() {
     
-        this.txtMarkdown = "[Imgur]("+ this.image +")"
-        this.clipboard.copy(this.txtMarkdown)
+        this.txtMarkdown = "[Imgur]("+ this.image +")";
+        this.clipboard.copy(this.txtMarkdown);
         
         
          // Do something here when the data is succesfully uploaded!
@@ -289,7 +294,7 @@ hacerFoto() {
 
   generarHtml() {
         
-            this.txtHtml = "<a href=\""+ this.image +"\"><img src=\"" +this.image + "\" title=\"source: imgur.com\" /></a>"
+            this.txtHtml = "<a href=\""+ this.image +"\"><img src=\"" +this.image + "\" title=\"source: imgur.com\" /></a>";
             this.clipboard.copy(this.txtHtml)
             
             
@@ -303,8 +308,8 @@ hacerFoto() {
 
   generarBbcode() {
     
-        this.txtBbcodeLink = "[url="+ this.image +"]" +"[img]" + this.image + "[/img][/url]"
-        this.clipboard.copy(this.txtBbcodeLink)
+        this.txtBbcodeLink = "[url="+ this.image +"]" +"[img]" + this.image + "[/img][/url]";
+        this.clipboard.copy(this.txtBbcodeLink);
         
         
          // Do something here when the data is succesfully uploaded!
@@ -354,7 +359,7 @@ hacerFoto() {
           }
         },
         {
-          text: 'Cancel',
+          text: 'Cancelar',
           role: 'cancel', // will always sort to be on the bottom
           icon: 'close',
           handler: () => {
