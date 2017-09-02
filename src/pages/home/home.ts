@@ -37,7 +37,7 @@ export class HomePage {
 
 
   client = new Client({
-
+   
 
   });
 
@@ -52,6 +52,7 @@ export class HomePage {
   linkDisponible = false;
   buttonDisabled = true;
   buttonDisabledForo = true;
+  buttonDisabledMas = true;
   spinnerCargaHide = true;
   txtBbcodeLink = "BBCode Linked";
   txtHtml = "HTML5";
@@ -124,6 +125,7 @@ hacerFoto() {
       this.linkMalo = true;
       this.linkDisponible = false;
       this.buttonDisabledForo = true;
+      this.buttonDisabledMas = true;
     }, (err) => {
       // Handle error
     });
@@ -162,6 +164,7 @@ hacerFoto() {
 
       this.buttonDisabled = null;
       this.buttonDisabledForo = true;
+      this.buttonDisabledMas = true;
       this.spinnerCargaHide = true;
       this.aux = 0;
       this.linkMalo = true;
@@ -223,6 +226,7 @@ hacerFoto() {
 
     loader.dismiss();
     this.buttonDisabledForo = null;
+    this.buttonDisabledMas = null;
 
 
     
@@ -244,6 +248,7 @@ hacerFoto() {
 
     this.buttonDisabled = true;
     this.buttonDisabledForo = true;
+    this.buttonDisabledMas = true;
 
     }
 
