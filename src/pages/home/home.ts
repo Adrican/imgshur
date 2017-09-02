@@ -37,7 +37,7 @@ export class HomePage {
 
 
   client = new Client({
-   
+
 
   });
 
@@ -84,8 +84,50 @@ export class HomePage {
     toast.present();
   }
 
-  
+  markdownToast() {
+    this.clipboard.copy(this.txtMarkdown)
+    let toast = this.toastCtrl.create({
+      message: 'Markdown copiado',
+      duration: 1500,
+      position: 'bottom'
+    });
 
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+
+  htmlToast() {
+    this.clipboard.copy(this.txtHtml)
+    let toast = this.toastCtrl.create({
+      message: 'HTML5 copiado',
+      duration: 1500,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+  
+  bbcodelinkToast() {
+    this.clipboard.copy(this.txtBbcodeLink)
+    let toast = this.toastCtrl.create({
+      message: 'BBCode Link copiado',
+      duration: 1500,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
 /**
   cogerImagen(){
       let options = {
@@ -272,7 +314,6 @@ hacerFoto() {
   subirImagenForos() {
 
     this.image = "[IMG]"+ this.image +"[/IMG]";
-    this.clipboard.copy(this.image);
     
     
      // Do something here when the data is succesfully uploaded!
@@ -286,12 +327,11 @@ hacerFoto() {
   generarMarkdown() {
     
         this.txtMarkdown = "[Imgur]("+ this.image +")";
-        this.clipboard.copy(this.txtMarkdown);
         
         
          // Do something here when the data is succesfully uploaded!
          
-         this.copiedToast();
+         this.markdownToast();
          
     
     
@@ -300,12 +340,11 @@ hacerFoto() {
   generarHtml() {
         
             this.txtHtml = "<a href=\""+ this.image +"\"><img src=\"" +this.image + "\" title=\"source: imgur.com\" /></a>";
-            this.clipboard.copy(this.txtHtml)
             
             
              // Do something here when the data is succesfully uploaded!
              
-             this.copiedToast();
+             this.htmlToast();
              
         
         
@@ -314,12 +353,11 @@ hacerFoto() {
   generarBbcode() {
     
         this.txtBbcodeLink = "[url="+ this.image +"]" +"[img]" + this.image + "[/img][/url]";
-        this.clipboard.copy(this.txtBbcodeLink);
         
         
          // Do something here when the data is succesfully uploaded!
          
-         this.copiedToast();
+         this.bbcodelinkToast();
          
     
     
